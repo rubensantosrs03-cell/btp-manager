@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#111827" />
+  <title>BTP Manager</title>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.2.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div id="toast" class="toast" role="status"></div>
+
+  <section id="auth-screen" class="auth-screen">
+    <div class="auth-card">
+      <div class="brand">
+        <div class="brand-mark">🏗️</div>
+        <div>
+          <h1>BTP Manager</h1>
+          <p>Gestion professionnelle de chantiers</p>
+        </div>
+      </div>
+      <div class="auth-tabs">
+        <button id="login-tab" class="active" type="button">Connexion</button>
+        <button id="signup-tab" type="button">Créer compte</button>
+      </div>
+      <form id="login-form" class="auth-form">
+        <label>Email<input id="login-email" type="email" required autocomplete="email"></label>
+        <label>Mot de passe<input id="login-password" type="password" required autocomplete="current-password"></label>
+        <button class="btn primary full" type="submit">Se connecter</button>
+        <button id="forgot-password" class="link-btn" type="button">Mot de passe oublié ?</button>
+      </form>
+      <form id="signup-form" class="auth-form hidden">
+        <label>Nom complet<input id="signup-name" type="text" required></label>
+        <label>Email<input id="signup-email" type="email" required autocomplete="email"></label>
+        <label>Mot de passe<input id="signup-password" type="password" minlength="8" required autocomplete="new-password"></label>
+        <label>Rôle
+          <select id="signup-role">
+            <option value="admin">Administrateur</option>
+            <option value="conducteur">Conducteur de travaux</option>
+            <option value="chef">Chef de chantier</option>
+            <option value="metre">Métreur</option>
+            <option value="equipe">Chef d'équipe</option>
+            <option value="viewer">Viewer</option>
+          </select>
+        </label>
+        <button class="btn primary full" type="submit">Créer mon compte</button>
+      </form>
+    </div>
+  </section>
+
+  <main id="app" class="app hidden">
+    <aside class="sidebar">
+      <div class="logo"><span>🏗️</span><strong>BTP Manager</strong><small>Chantiers & métrés</small></div>
+      <nav id="main-nav">
+        <button data-view="dashboard" class="active"><i class="ti ti-layout-dashboard"></i>Dashboard</button>
+        <button data-view="projects"><i class="ti ti-building-skyscraper"></i>Projets</button>
+        <button data-view="phases"><i class="ti ti-list-check"></i>Phases</button>
+        <button data-view="tasks"><i class="ti ti-checkbox"></i>Tâches</button>
+        <button data-view="photos"><i class="ti ti-camera"></i>Photos</button>
+        <button data-view="documents"><i class="ti ti-file-description"></i>Documents</button>
+        <button data-view="calendar"><i class="ti ti-calendar-event"></i>Calendrier</button>
+        <button data-view="chat"><i class="ti ti-messages"></i>Chat</button>
+        <button data-view="reports"><i class="ti ti-report"></i>Rapports</button>
+        <button data-view="team"><i class="ti ti-users"></i>Équipe</button>
+      </nav>
+      <div class="sidebar-footer">
+        <span id="user-label">Utilisateur</span>
+        <button id="logout-btn" class="btn ghost small">Déconnexion</button>
+      </div>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar">
+        <button id="mobile-menu" class="icon-btn"><i class="ti ti-menu-2"></i></button>
+        <div>
+          <h2 id="view-title">Dashboard</h2>
+          <p id="project-context">Aucun projet sélectionné</p>
+        </div>
+        <div class="top-actions">
+          <select id="project-select"></select>
+          <button id="new-project-btn" class="btn primary"><i class="ti ti-plus"></i>Projet</button>
+        </div>
+      </header>
+
+      <section id="content" class="content"></section>
+    </section>
+
+    <nav class="bottom-nav" id="bottom-nav">
+      <button data-view="dashboard" class="active"><i class="ti ti-home"></i><span>Home</span></button>
+      <button data-view="projects"><i class="ti ti-building"></i><span>Projets</span></button>
+      <button data-view="photos"><i class="ti ti-camera"></i><span>Photos</span></button>
+      <button data-view="calendar"><i class="ti ti-calendar"></i><span>Agenda</span></button>
+      <button data-view="chat"><i class="ti ti-message"></i><span>Chat</span></button>
+    </nav>
+  </main>
+
+  <dialog id="modal" class="modal"><div id="modal-body"></div></dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
